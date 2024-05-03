@@ -5,8 +5,8 @@ let d = new Date();
 let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
 
 // baseURL and Key
-let baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip='
-let apiKey = '&appid=96f838b91ec8f4421f1034981eb6ac8e';
+const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip='
+const apiKey = '&appid=96f838b91ec8f4421f1034981eb6ac8e&units=imperial';
 
 document.getElementById('generate').addEventListener('click', performAction);
 
@@ -62,7 +62,7 @@ const updateUI = async () => {
     try {
         const allData = await request.json();
         document.getElementById('date').innerHTML = allData.date;
-        document.getElementById('temp').innerHTML = allData.temp;
+        document.getElementById('temp').innerHTML = Math.round(allData.temp)+ ' degrees';
         document.getElementById('content').innerHTML = allData.content;
 
     } catch (error) {
